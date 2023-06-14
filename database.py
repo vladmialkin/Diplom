@@ -7,17 +7,17 @@ class DataBase:
     def __init__(self):
         self.database = None
         self.cursor = None
-        self.db_host = '172.17.0.3'
-        self.db_list = ['192.168.0.72', '192.168.0.21']
+        self.db_host = '192.168.122.163'
+        self.db_list = ['192.168.122.163']
 
     def connecting(self):
         """функция подключения к базе данных"""
         self.database = mysql.connector.connect(
-            user='redmine',
-            password='561239zxc',
+            user='root',
+            password='example',
             host=self.db_host,
             database='redmine',
-            port='3306'
+            port='5217'
         )
         self.cursor = self.database.cursor()
 

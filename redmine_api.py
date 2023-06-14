@@ -5,7 +5,7 @@ class RedmineApi:
     """класс взаимодействия с API"""
 
     def __init__(self):
-        self.__site = 'http://172.17.0.3:3000/'
+        self.__site = 'http://192.168.122.163:8080/'
         self.redmine = None
 
     def connecting(self, __login: str, __password: str):

@@ -24,8 +24,8 @@ class UserModel(Model):
 
     def check_rights(self):
         """функция проверки на наличие прав руководителя и администратора"""
-        if self.database.get_supervizor_rights(self.user_id) is not None:
-            self.supervisor_rights = True
+        # if self.database.get_supervizor_rights(self.user_id) is not None:
+        #     self.supervisor_rights = True
         if self.user_id in self.admin_list:
             self.admin_rights = True
             self.supervisor_rights = True

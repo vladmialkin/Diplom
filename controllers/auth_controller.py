@@ -16,16 +16,19 @@ class AuthController(Controller):
 
     def authorization(self, event):
         """функция авторизации аккаунта Redmine"""
-        connect = self.model.authorization(login=self.view.login_entry.value,
-                                           password=self.view.password_entry.value)
-        if connect is None:
-            self.worker_controller(redmine=self.model.redmine, database=self.model.database,
-                                   user_model=self.model.user_model)
-            self.supervisor_controller(redmine=self.model.redmine, database=self.model.database,
+        try:
+            connect = self.model.authorization(login=self.view.login_entry.value,
+                                               password=self.view.password_entry.value)
+            if connect is None:
+                self.worker_controller(redmine=self.model.redmine, database=self.model.database,
                                        user_model=self.model.user_model)
-            self.admin_controller(redmine=self.model.redmine, database=self.model.database,
-                                  user_model=self.model.user_model)
-        else:
-            self.view.login_entry.error_text = connect
-            self.view.password_entry.error_text = connect
-            self.view.update()
+                self.supervisor_controller(redmine=self.model.redmine, database=self.model.database,
+                                           user_model=self.model.user_model)
+                self.admin_controller(redmine=self.model.redmine, database=self.model.database,
+                                      user_model=self.model.user_model)
+            else:
+                self.view.login_entry.error_text = connect
+                self.view.password_entry.error_text = connect
+                self.view.update()
+        except Exception as e:
+            print(e)
